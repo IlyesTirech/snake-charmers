@@ -1,2 +1,0 @@
-# react-warriors-coding-challenge
- 
