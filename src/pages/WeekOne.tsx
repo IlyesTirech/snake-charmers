@@ -138,7 +138,8 @@ const WeekOne: React.FC = () => {
                   );
                   e.preventDefault();
                 }}
-                mt="sm">
+                mt="sm"
+                mr="lg">
                 Smallest in array
               </Button>
               <Button
