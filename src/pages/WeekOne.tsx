@@ -1,133 +1,187 @@
-import { Card, Container, Grid, Group, Input, Text } from '@mantine/core';
 import React, { useState } from 'react';
+import { Container, Grid, Card, TextInput, Button } from '@mantine/core';
 
-const WeekOne = () => {
-  const [num, setNum] = useState(0);
-  const [num1, setNum1] = useState(0);
-  const [numArray, setNumArray] = useState<any[]>([]);
-  const [twoDArr, setTwoDArr] = useState<any[]>([]);
+const WeekOne: React.FC = () => {
+  const [w1t1Result, setW1t1Result] = useState<string>('');
+  const [w1t2Result, setW1t2Result] = useState<string>('');
+  const [w1t3Result, setW1t3Result] = useState<string>('');
+  const [w1t3cResult, setW1t3cResult] = useState<string>('');
+  const [lastGeneratedNumber, setLastGeneratedNumber] = useState<number>(1);
 
-  const w1t1 = () => {
-    if (num === 0) {
-      return 0;
-    }
-    const result = (num % 3 ? '' : 'Fizz') + (num % 5 ? '' : 'Buzz') || num;
-    return result;
-  };
-
-  const handleTask1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputNum = parseInt(e.target.value, 10) || 0;
-    setNum(inputNum);
+  const w1t1 = (a: number) => {
+    setW1t1Result(
+      (a % 3 ? '' : 'Fizz') + (a % 5 ? '' : 'Buzz') || a.toString()
+    );
   };
 
   const w1t2 = () => {
-    let lastGeneratedNumber = 1;
-    let output = '';
-    for (let i = 1; i < lastGeneratedNumber + 10; i++) {
+    let output = w1t2Result;
+    for (let i = lastGeneratedNumber; i < lastGeneratedNumber + 10; i++) {
       let result = (i % 3 ? '' : 'Fizz') + (i % 5 ? '' : 'Buzz') || i;
       output += result + ' ';
     }
 
-    lastGeneratedNumber += 10;
+    setLastGeneratedNumber(lastGeneratedNumber + 10);
 
-    return output;
+    setW1t2Result(output);
   };
 
-  const handleTask2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputNum = parseInt(e.target.value, 10) || 0;
-    setNum1(inputNum);
-  };
-
-  const w1t3a = () => {
-    if (numArray.length < 1) {
-      return 0;
+  const w1t3a = (a: string) => {
+    try {
+      let arr = JSON.parse(a);
+      if (!Array.isArray(arr)) {
+        throw new Error('Input is not a valid array');
+      }
+      let b = Math.min(...arr);
+      let result = (b % 3 ? '' : 'Fizz') + (b % 5 ? '' : 'Buzz') || b;
+      setW1t3Result(result.toString());
+    } catch (error: any) {
+      setW1t3Result('Error parsing JSON: ' + error.message);
     }
-    let b = Math.min(...numArray);
-    const result = (b % 3 ? '' : 'Fizz') + (b % 5 ? '' : 'Buzz') || b;
-    return result;
   };
 
-  const w1t3b = () => {
-    if (numArray.length < 1) {
-      return 0;
+  const w1t3b = (a: string) => {
+    try {
+      let arr = JSON.parse(a);
+      if (!Array.isArray(arr)) {
+        throw new Error('Input is not a valid array');
+      }
+      let sum = arr.reduce((acc: number, val: number) => acc + val, 0);
+      let b = Math.round(sum / arr.length);
+      let result = (b % 3 ? '' : 'Fizz') + (b % 5 ? '' : 'Buzz') || b;
+      setW1t3Result(result.toString());
+    } catch (error: any) {
+      setW1t3Result('Error parsing JSON: ' + error.message);
     }
-    let sum = numArray.reduce((a, b) => a + b, 0);
-    let b = Math.round(sum / numArray.length);
-    const result = (b % 3 ? '' : 'Fizz') + (b % 5 ? '' : 'Buzz') || b;
-    return result;
   };
 
-  const w1t3c = () => {
-    let output: any = [];
-    numArray.forEach((sub_arr) => {
-      let sum = sub_arr.reduce((a: number, b: number) => a + b, 0);
-      let b = Math.min(...sub_arr);
-      const result = (b % 3 ? '' : 'Fizz') + (b % 5 ? '' : 'Buzz') || b;
-      output.push(result);
-    });
-    console.log({ output });
-
-    return output.join(', ');
-  };
-
-  const handleTask3a = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newArray = e.target.value.split(',').map(Number);
-    setNumArray(newArray);
-  };
-
-  const handleTask3b = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputString = e.target.value;
-    const rows = inputString.split(';');
-    const newArray = rows.map((row) => row.split(',').map(Number));
-    setTwoDArr(newArray);
+  const w1t3c = (a: string) => {
+    try {
+      let arr = JSON.parse(a);
+      if (!Array.isArray(arr) || !arr.every(Array.isArray)) {
+        throw new Error('Input is not a valid 2D array');
+      }
+      let output = arr.map((sub_arr: number[]) => {
+        let sum = sub_arr.reduce((acc: number, val: number) => acc + val, 0);
+        let b = Math.min(...sub_arr);
+        return (b % 3 ? '' : 'Fizz') + (b % 5 ? '' : 'Buzz') || b;
+      });
+      setW1t3cResult(output.join(', '));
+    } catch (error: any) {
+      setW1t3cResult('Error parsing JSON: ' + error.message);
+    }
   };
 
   return (
-    <>
-      <Container my="md">
-        <Grid>
-          <Grid.Col span={{ base: 12, xs: 4 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Group justify="space-between" mt="md" mb="xs">
-                <Text fw={500}>Task 1</Text>
-                <Input
-                  placeholder="Input component"
-                  onChange={handleTask1}
-                  value={num}
-                />
-                <h1>{w1t1()}</h1>
-              </Group>
-            </Card>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Group justify="space-between" mt="md" mb="xs">
-                <Text fw={500}>Task 2</Text>
-                <h1>{w1t2()}</h1>
-              </Group>
-            </Card>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Group justify="space-between" mt="md" mb="xs">
-                <Text fw={500}>Task 3a</Text>
-                <Input
-                  placeholder="Input component"
-                  onChange={handleTask3a}
-                  value={numArray.join(',')}
-                />
-                <h1>{w1t3a()}</h1>
-                <Text fw={500}>Task 3b</Text>
-                <h1>{w1t3b()}</h1>
-                <Text fw={500}>Task 3c</Text>
-                <Input
-                  placeholder="Input component"
-                  onChange={handleTask3b}
-                  value={twoDArr.join(',')}
-                />
-                <h1>{w1t3c()}</h1>
-              </Group>
-            </Card>
-          </Grid.Col>
-        </Grid>
-      </Container>
-    </>
+    <Container size="sm">
+      <h1 className="title mt-5">Week 1</h1>
+
+      <Grid>
+        <Grid.Col span={12}>
+          <Card shadow="sm" padding="lg" radius="md" withBorder>
+            <h2>Week 1 Task 1</h2>
+            <p>Simple fizz buzz from inputted number.</p>
+            <form>
+              <TextInput
+                label="Input"
+                id="a"
+                type="number"
+                onChange={(e) => w1t1(Number(e.currentTarget.value))}
+              />
+              <Button
+                mt="sm"
+                onClick={(e) => {
+                  w1t1(
+                    Number(
+                      (document.getElementById('a') as HTMLInputElement).value
+                    )
+                  );
+                  e.preventDefault();
+                }}>
+                FizzBuzzzzzz
+              </Button>
+            </form>
+            <p id="w1t1" className="mt-3">
+              {w1t1Result}
+            </p>
+          </Card>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Card shadow="sm" padding="lg" radius="md" withBorder>
+            <h2>Week 1 Task 2</h2>
+            <p>FizzBuzz Printer</p>
+            <Button onClick={w1t2} mt="sm">
+              Generate next 10 numbers
+            </Button>
+            <div className="mt-3" id="w1t2">
+              {w1t2Result}
+            </div>
+          </Card>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Card shadow="sm" padding="lg" radius="md" withBorder>
+            <h2>Week 1 Task 3</h2>
+            <p>FizzBuzz Array Handler</p>
+            <form>
+              <TextInput
+                label="Enter an array"
+                id="b"
+                onChange={(e) => {
+                  (document.getElementById('b') as HTMLInputElement).value =
+                    e.currentTarget.value;
+                }}
+              />
+              <Button
+                onClick={(e) => {
+                  w1t3a(
+                    (document.getElementById('b') as HTMLInputElement).value
+                  );
+                  e.preventDefault();
+                }}
+                mt="sm">
+                Smallest in array
+              </Button>
+              <Button
+                onClick={(e) => {
+                  w1t3b(
+                    (document.getElementById('b') as HTMLInputElement).value
+                  );
+                  e.preventDefault();
+                }}
+                mt="sm">
+                Mean of array
+              </Button>
+            </form>
+            <p id="w1t3" className="mt-3">
+              {w1t3Result}
+            </p>
+            <form>
+              <TextInput
+                label="Enter a 2d array"
+                id="c"
+                onChange={(e) => {
+                  (document.getElementById('c') as HTMLInputElement).value =
+                    e.currentTarget.value;
+                }}
+              />
+              <Button
+                onClick={(e) => {
+                  w1t3c(
+                    (document.getElementById('c') as HTMLInputElement).value
+                  );
+                  e.preventDefault();
+                }}
+                mt="sm">
+                Smallest in each sub array
+              </Button>
+            </form>
+            <p id="w1t3c" className="mt-3">
+              {w1t3cResult}
+            </p>
+          </Card>
+        </Grid.Col>
+      </Grid>
+    </Container>
   );
 };
 
