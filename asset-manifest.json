@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-warriors-coding-challenge/static/css/main.e1580dd3.css",
-    "main.js": "/react-warriors-coding-challenge/static/js/main.14eae0bb.js",
+    "main.js": "/react-warriors-coding-challenge/static/js/main.74467a2e.js",
     "static/js/787.e94f7096.chunk.js": "/react-warriors-coding-challenge/static/js/787.e94f7096.chunk.js",
     "index.html": "/react-warriors-coding-challenge/index.html",
     "main.e1580dd3.css.map": "/react-warriors-coding-challenge/static/css/main.e1580dd3.css.map",
-    "main.14eae0bb.js.map": "/react-warriors-coding-challenge/static/js/main.14eae0bb.js.map",
+    "main.74467a2e.js.map": "/react-warriors-coding-challenge/static/js/main.74467a2e.js.map",
     "787.e94f7096.chunk.js.map": "/react-warriors-coding-challenge/static/js/787.e94f7096.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e1580dd3.css",
-    "static/js/main.14eae0bb.js"
+    "static/js/main.74467a2e.js"
   ]
 }
