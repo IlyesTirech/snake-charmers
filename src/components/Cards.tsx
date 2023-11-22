@@ -1,6 +1,5 @@
 import {
   Card,
-  Image,
   Text,
   Badge,
   Button,
@@ -8,7 +7,6 @@ import {
   Container,
   Grid
 } from '@mantine/core';
-import maxresdefault from '../images/maxresdefault.jpg';
 import { useNavigate } from 'react-router-dom';
 
 const Cards = () => {

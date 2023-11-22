@@ -62,7 +62,7 @@ const WeekOne: React.FC = () => {
         throw new Error('Input is not a valid 2D array');
       }
       let output = arr.map((sub_arr: number[]) => {
-        let sum = sub_arr.reduce((acc: number, val: number) => acc + val, 0);
+        // let sum = sub_arr.reduce((acc: number, val: number) => acc + val, 0);
         let b = Math.min(...sub_arr);
         return (b % 3 ? '' : 'Fizz') + (b % 5 ? '' : 'Buzz') || b;
       });
