@@ -99,6 +99,23 @@ const WeekTwo: React.FC = () => {
     return formattedDate;
   }
 
+  const t1Code = `  const formatDate = () => {
+    setTask1Result(date.toISOString().slice(0, 10));
+  };`
+  const t2Code = <pre>{`
+  function detectAndConvertFormat() {
+  const dateFormatRegex = /^(\d{1,2})(st|nd|rd|th)?\s+(\w+)\s+(\d{4})$/;
+
+  const isCustomFormat = dateFormatRegex.test(correctFormat);
+
+    if (isCustomFormat) {
+      setTask2Result(convertToISOFormat());
+    } else if (/^\d{4}-\d{2}-\d{2}$/.test(correctFormat)) {
+      setTask2Result(convertToCustomFormat());
+    } else {
+      setTask2Result('Not a valid format.');
+    }
+  }`}</pre>
   return (
     <Container size="sm">
       <h1 className="title mt-5">Week 2</h1>
@@ -108,6 +125,9 @@ const WeekTwo: React.FC = () => {
           <Card shadow="sm" padding="lg" radius="md" withBorder>
             <h2>Task 1</h2>
             <p>Convert Date Format</p>
+            <Code>
+              {t1Code}
+            </Code>
             <form>
               <DateInput
                 value={date}
@@ -131,6 +151,9 @@ const WeekTwo: React.FC = () => {
           <Card shadow="sm" padding="lg" radius="md" withBorder>
             <h2>Task 2</h2>
             <p>Convert Date Format</p>
+            <Code>
+              {t2Code}
+            </Code>
             <form>
               <TextInput
                 value={correctFormat}

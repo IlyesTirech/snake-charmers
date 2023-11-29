@@ -21,14 +21,7 @@ const CardItem: React.FC<CardItemProps> = ({ title, status, link }) => {
 
   return (
     <Card
-      shadow="sm"
-      style={{
-        width: 300,
-        height: 200,
-        padding: 'lg',
-        borderRadius: 'md',
-        borderWidth: '1px'
-      }}>
+    shadow="sm" padding="lg" radius="md" withBorder>
       <Group justify="space-between" mt="md" mb="xs">
         <Text fw={500}>{title}</Text>
         <Badge color={badgeColor} variant="light">
