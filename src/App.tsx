@@ -11,6 +11,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/week1" element={<WeekOne />} />
           <Route path="/week2" element={<WeekTwo />} />
+          <Route path="/week3" element={<WeekThree />} />
         </Routes>
       </Router>
     </div>

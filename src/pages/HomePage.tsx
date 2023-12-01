@@ -5,7 +5,13 @@ import { Grid, Container, Paper, Text } from '@mantine/core';
 const HomePage: React.FC = () => {
   const weeks = [
     { weekNumber: 1, title: 'FizzBuzz', status: 'done', link: '/week1' },
-    { weekNumber: 2, title: 'DateTime', status: 'in progress', link: '/week2' }
+    { weekNumber: 2, title: 'DateTime', status: 'done', link: '/week2' },
+    {
+      weekNumber: 3,
+      title: 'MaxProduct',
+      status: 'in progress',
+      link: '/week3'
+    }
   ];
 
   return (
