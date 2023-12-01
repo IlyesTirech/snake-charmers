@@ -9,11 +9,11 @@ const WeekThree: React.FC = () => {
   const [task4Result, setTask4Result] = useState<string>('');
   const [task5Result, setTask5Result] = useState<string>('');
 
-  const t1Code = {};
-  const t2Code = {};
-  const t3Code = {};
-  const t4Code = {};
-  const t5Code = {};
+  const t1Code = '';
+  const t2Code = '';
+  const t3Code = '';
+  const t4Code = '';
+  const t5Code = '';
 
   return (
     <Container size="sm">
