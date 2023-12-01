@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import WeekOne from './pages/WeekOne';
 import WeekTwo from './pages/WeekTwo';
+import WeekThree from './pages/WeekThree';
 
 function App() {
   return (
