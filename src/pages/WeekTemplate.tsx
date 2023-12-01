@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Grid, Card, Code } from '@mantine/core';
 
-const WeekThree: React.FC = () => {
+const WeekTemplate: React.FC = () => {
   // Task 1
   const [task1Result, setTask1Result] = useState<string>('');
   const [task2Result, setTask2Result] = useState<string>('');
@@ -70,4 +70,4 @@ const WeekThree: React.FC = () => {
   );
 };
 
-export default WeekThree;
+export default WeekTemplate;
