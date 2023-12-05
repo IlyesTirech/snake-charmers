@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
     {
       weekNumber: 3,
       title: 'MaxProduct',
-      status: 'in progress',
+      status: 'done',
       link: '/week3'
     }
   ];
