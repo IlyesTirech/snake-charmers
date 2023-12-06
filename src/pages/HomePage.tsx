@@ -1,6 +1,6 @@
 import React from 'react';
 import CardItem from '../components/Cards';
-import { Grid, Container, Paper, Text } from '@mantine/core';
+import { Grid, Container, Text } from '@mantine/core';
 
 const HomePage: React.FC = () => {
   const weeks = [

@@ -74,7 +74,7 @@ const WeekThree: React.FC = () => {
 
       let largestSubArray: number[] = [];
       let largestProduct = -Infinity;
-      let output = arr.map((sub_arr: number[]) => {
+      arr.map((sub_arr: number[]) => {
         console.log(sub_arr);
         let product = sub_arr.reduce((acc, num) => acc * num, 1);
 
@@ -88,6 +88,7 @@ const WeekThree: React.FC = () => {
 
         setTask3Result(largestProduct);
         setTask3ResultSubArr(largestSubArray);
+        return largestProduct;
       });
     } catch (error: any) {
       setTask3Result('Error parsing JSON: ' + error.message);
