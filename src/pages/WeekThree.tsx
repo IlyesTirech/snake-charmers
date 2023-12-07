@@ -290,7 +290,7 @@ setTask5Result(maxProduct(subArraySums));`}</pre>
               onChange={handleChangeTask2}
             />
             <Button onClick={minimumProduct} mt="sm" mr="lg">
-              Maximum number
+              Minimum number
             </Button>
             <p className="mt-3">{task2Result}</p>
           </Card>
