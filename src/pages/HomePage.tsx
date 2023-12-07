@@ -11,7 +11,8 @@ const HomePage: React.FC = () => {
       title: 'MaxProduct',
       status: 'done',
       link: '/week3'
-    }
+    },
+    { weekNumber: 4, title: 'BinarySearch', status: 'inprogress', link: '/week4' },
   ];
 
   return (
