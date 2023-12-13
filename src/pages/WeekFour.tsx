@@ -105,87 +105,97 @@ const WeekFour = () => {
       return count;
     }
     
-    const t2Code = `const binarySearch = () => {
+    const t2Code = (
+      <pre>{` const binarySearch = () => {
       
-      let left = 0;
-      let right = formatArray(task2aArray).length - 1;
-    
-      while (left <= right) { 
-        const mid = Math.floor((left + right) / 2);
-    
-        if (formatArray(task2aArray)[mid] === formatNumber(task2aTarget)) {
-          console.log({mid})
-          setTask2aResult(mid)
-          return mid; 
-        } else if (formatArray(task2aArray)[mid] < formatNumber(task2aTarget)) {
-          left = mid + 1; 
-        } else {
-          right = mid - 1; 
-        }
-      }
-      setTask2aResult(-1)
-      return -1; 
-    }`
-
-    const t3Code = `    const binarySearchFirstIndex = () => {
-    
-      let left = 0;
-      let right = formatArray(task2bArray).length - 1;
-      let resultIndex = -1;
-    
-      while (left <= right) {
-        const mid = Math.floor((left + right) / 2);
-    
-        if (formatArray(task2bArray)[mid] === formatNumber(task2bTarget)) {
-          resultIndex = mid;
-          right = mid - 1;
-        } else if (formatArray(task2bArray)[mid] < formatNumber(task2bTarget)) {
-          left = mid + 1; 
-        } else {
-          right = mid - 1; 
-        }
-      }
-      setTask2bResult(resultIndex)
-      return resultIndex;
-    }`
-
-    const t4Code = `const countOccurrences = () => {
-    
-      let left = 0;
-      let right = formatArray(task2cArray).length - 1;
-      let count = 0;
-    
-      while (left <= right) {
-        const mid = Math.floor((left + right) / 2);
-    
-        if (formatArray(task2cArray)[mid] === formatNumber(task2cTarget)) {
-          
-          count++;
-          
-          let leftPointer = mid - 1;
-          let rightPointer = mid + 1;
-    
-          while (leftPointer >= 0 && formatArray(task2cArray)[leftPointer] === formatNumber(task2cTarget)) {
-            count++;
-            leftPointer--;
+        let left = 0;
+        let right = formatArray(task2aArray).length - 1;
+      
+        while (left <= right) { 
+          const mid = Math.floor((left + right) / 2);
+      
+          if (formatArray(task2aArray)[mid] === formatNumber(task2aTarget)) {
+            console.log({mid})
+            setTask2aResult(mid)
+            return mid; 
+          } else if (formatArray(task2aArray)[mid] < formatNumber(task2aTarget)) {
+            left = mid + 1; 
+          } else {
+            right = mid - 1; 
           }
-    
-          while (rightPointer < formatArray(task2cArray).length && formatArray(task2cArray)[rightPointer] === formatNumber(task2cTarget)) {
-            count++;
-            rightPointer++;
-          }
-          setTask2cResult(count)
-          return count;
-        } else if (formatArray(task2cArray)[mid] < formatNumber(task2cTarget)) {
-          left = mid + 1; 
-        } else {
-          right = mid - 1;
         }
-      }
+        setTask2aResult(-1)
+        return -1; 
+      }`}</pre>
+    );
 
-      setTask2cResult(count)
-      return count;
-    }`
+    const t3Code = (
+      <pre>{` 
+      const binarySearchFirstIndex = () => {
+    
+        let left = 0;
+        let right = formatArray(task2bArray).length - 1;
+        let resultIndex = -1;
+      
+        while (left <= right) {
+          const mid = Math.floor((left + right) / 2);
+      
+          if (formatArray(task2bArray)[mid] === formatNumber(task2bTarget)) {
+            resultIndex = mid;
+            right = mid - 1;
+          } else if (formatArray(task2bArray)[mid] < formatNumber(task2bTarget)) {
+            left = mid + 1; 
+          } else {
+            right = mid - 1; 
+          }
+        }
+        setTask2bResult(resultIndex)
+        return resultIndex;
+      }
+      }`}</pre>
+    );
+
+    const t4Code = (
+      <pre>{` 
+      const countOccurrences = () => {
+    
+        let left = 0;
+        let right = formatArray(task2cArray).length - 1;
+        let count = 0;
+      
+        while (left <= right) {
+          const mid = Math.floor((left + right) / 2);
+      
+          if (formatArray(task2cArray)[mid] === formatNumber(task2cTarget)) {
+            
+            count++;
+            
+            let leftPointer = mid - 1;
+            let rightPointer = mid + 1;
+      
+            while (leftPointer >= 0 && formatArray(task2cArray)[leftPointer] === formatNumber(task2cTarget)) {
+              count++;
+              leftPointer--;
+            }
+      
+            while (rightPointer < formatArray(task2cArray).length && formatArray(task2cArray)[rightPointer] === formatNumber(task2cTarget)) {
+              count++;
+              rightPointer++;
+            }
+            setTask2cResult(count)
+            return count;
+          } else if (formatArray(task2cArray)[mid] < formatNumber(task2cTarget)) {
+            left = mid + 1; 
+          } else {
+            right = mid - 1;
+          }
+        }
+  
+        setTask2cResult(count)
+        return count;
+      }
+      `}</pre>
+    );
   return (
     <Container size="sm">
       <h1 className="title mt-5">Week 4</h1>
