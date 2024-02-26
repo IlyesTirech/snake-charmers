@@ -4,65 +4,70 @@ import { Container, Grid, Card, TextInput, Button, Checkbox, Slider } from '@man
 const WeekOne: React.FC = () => {
 
     const [password, setPassword] = useState<string>('')
-    const [passwordLength, setPasswordLength] = useState<number>(0)
+    const [isError, setIsError] = useState<boolean>(false)
+    const [errorMessage, setErrorMessage] = useState<string>('')
+    const [passwordLength, setPasswordLength] = useState<number>(5)
     const [isUppercase, setIsUppercase] = useState<boolean>(false);
     const [isLowercase, setIsLowercase] = useState<boolean>(false);
     const [isNumber, setIsNumber] = useState<boolean>(false);
     const [isSymbol, setIsSymbol] = useState<boolean>(false);
 
-    console.log({passwordLength});
-    
-    console.log({isNumber});
-
-
     const generatePassword = () => {
-
-      const randomNumber = (min: number, max: number) => {
-      // Function to generate a random number between min and max (inclusive)
-      const minCeil = Math.ceil(min);
-      const maxFloor = Math.floor(max);
-      let random_num = Math.floor(Math.random() * (maxFloor - minCeil + 1) + 0);
-      return random_num
-      };
+      if(!isUppercase && !isLowercase && !isSymbol && !isNumber) {
+        setIsError(true)
+        setErrorMessage('Please check a box to complete the password generation!')
+      } 
+      else {
+        const randomNumber = (min: number, max: number) => {
+          // Function to generate a random number between min and max (inclusive)
+          const minCeil = Math.ceil(min);
+          const maxFloor = Math.floor(max);
+          let random_num = Math.floor(Math.random() * (maxFloor - minCeil + 1) + 0);
+          return random_num
+          };
+          
+          const randomLower = () => {
+            // Function to generate a random lowercase letter
+            const alphabet = "abcdefghijklmnopqrstuvwxyz"
+            let randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
+            return randomCharacter 
+          };
+          
+          const randomUpper = () => {
+            // Function to generate a random uppercase letter
+            let upperCaseCharacter = randomLower().toUpperCase()
+            return upperCaseCharacter
+          };
+          
+          const randomSymbol = () => {
+            // Function to generate a random symbol
+            const symbols = "!@#$%^&*_-+=";
+            let randomSymbol = symbols[Math.floor(Math.random() * symbols.length)]
+            return randomSymbol 
+          };
       
-      const randomLower = () => {
-        // Function to generate a random lowercase letter
-        const alphabet = "abcdefghijklmnopqrstuvwxyz"
-        let randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
-        return randomCharacter 
-      };
-      
-      const randomUpper = () => {
-        // Function to generate a random uppercase letter
-        let upperCaseCharacter = randomLower().toUpperCase()
-        return upperCaseCharacter
-      };
-      
-      const randomSymbol = () => {
-        // Function to generate a random symbol
-        const symbols = "!@#$%^&*_-+=";
-        let randomSymbol = symbols[Math.floor(Math.random() * symbols.length)]
-        return randomSymbol 
-      };
-  
-      let password = "";
-      for (let i = 0; i < passwordLength; i++) {
-        let choice = randomNumber(0, 3);
-        if (isLowercase && choice === 0) {
-          password += randomLower();
-        } else if (isUppercase && choice === 1) {
-          password += randomUpper();
-        } else if (isSymbol && choice === 2) {
-          password += randomSymbol();
-        } else if (isNumber && choice === 3) {
-          password += randomNumber(0, 10);
-        } else {
-          i--;
-        }
-      }
-      setPassword(password);
-    };
+          let password = ""
     
+          for (let i = 0; i < passwordLength; i++) {
+            let choice = randomNumber(0, 3);
+            if (isLowercase && choice === 0) {
+              password += randomLower();
+            } else if (isUppercase && choice === 1) {
+              password += randomUpper();
+            } else if (isSymbol && choice === 2) {
+              password += randomSymbol();
+            } else if (isNumber && choice === 3) {
+              password += randomNumber(0, 10);
+            } else {
+              i--;
+            }
+          }
+          setIsError(false)
+          setPassword(password);
+      }
+      
+    };
+
 
     return (
     <Container size="sm">
@@ -73,10 +78,12 @@ const WeekOne: React.FC = () => {
             <form>
           <Slider
       color="blue"
+      min={5}
       max={20}
       marks={[
-        { value: 0, label: '0' },
+        { value: 5, label: '5' },
         { value: 10, label: '10' },
+        { value: 15, label: '15' },
         { value: 20, label: '20' },
       ]}
       value={passwordLength} onChange={setPasswordLength}
@@ -103,12 +110,13 @@ const WeekOne: React.FC = () => {
               />
               <Button
                 mt="sm"
+                onClick={generatePassword}
               >
                 Generate Password
               </Button>
             </form>
             <p id="w1t1" className="mt-3">
-              {}
+              {!isError ? password : errorMessage}
             </p>
           </Card>
         </Grid.Col>
