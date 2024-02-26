@@ -4,22 +4,14 @@ import { Grid, Container, Text } from '@mantine/core';
 
 const HomePage: React.FC = () => {
   const weeks = [
-    { weekNumber: 1, title: 'FizzBuzz', status: 'done', link: '/week1' },
-    { weekNumber: 2, title: 'DateTime', status: 'done', link: '/week2' },
-    {
-      weekNumber: 3,
-      title: 'MaxProduct',
-      status: 'done',
-      link: '/week3'
-    },
-    { weekNumber: 4, title: 'BinarySearch', status: 'inprogress', link: '/week4' },
+    { weekNumber: 1, title: 'Password Generator', status: 'done', link: '/week1' },
   ];
 
   return (
     <Container size="lg" style={{ marginTop: '2rem' }}>
       <div>
         <Text size="xl" style={{ marginBottom: '1rem' }}>
-          React Warriors Coding Challenge
+          Snake Charmers Coding Challenge
         </Text>
       </div>
       <Grid>
