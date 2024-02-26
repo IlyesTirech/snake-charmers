@@ -1,46 +1,70 @@
 import React, { useState } from 'react';
-import { Container, Grid, Card, TextInput, Button } from '@mantine/core';
+import { Container, Grid, Card, TextInput, Button, Checkbox, Slider } from '@mantine/core';
 
 const WeekOne: React.FC = () => {
-  const [w1t1Result, setW1t1Result] = useState<string>('');
 
-  const w1t1 = (a: number) => {
-    setW1t1Result(
-      (a % 3 ? '' : 'Fizz') + (a % 5 ? '' : 'Buzz') || a.toString()
-    );
-  };
+    const [passwordLength, setPasswordLength] = useState<number>(0)
+    const [isUppercase, setIsUppercase] = useState<boolean>(false);
+    const [isLowercase, setIsLowercase] = useState<boolean>(false);
+    const [isNumber, setIsNumber] = useState<boolean>(false);
+    const [isSymbol, setIsSymbol] = useState<boolean>(false);
+
+    console.log({passwordLength});
+    
+    console.log({isNumber});
 
 
-  return (
+    const generatePassword = () => {
+      // rand string generator given a length
+        // 
+    }
+    
+
+    return (
     <Container size="sm">
-      <h1 className="title mt-5">Week 1</h1>
+      <h1 className="title mt-5">Password Generator</h1>
       <Grid>
         <Grid.Col span={12}>
           <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <h2>Week 1 Task 1</h2>
-            <p>Simple fizz buzz from inputted number.</p>
             <form>
-              <TextInput
-                label="Input"
-                id="a"
-                type="number"
-                onChange={(e) => w1t1(Number(e.currentTarget.value))}
+          <Slider
+      color="blue"
+      max={20}
+      marks={[
+        { value: 0, label: '0' },
+        { value: 10, label: '10' },
+        { value: 20, label: '20' },
+      ]}
+      value={passwordLength} onChange={setPasswordLength}
+    />
+              <Checkbox 
+                radius = 'xl'
+                label = 'Uppercase letters'
+                onChange={(event) => setIsUppercase(event.currentTarget.checked)}
+              />
+              <Checkbox
+                radius = 'xl'
+                label = 'Lowercase letters'
+                onChange={(event) => setIsLowercase(event.currentTarget.checked)}
+              />
+              <Checkbox
+                radius = 'xl'
+                label = 'Symbols'
+                onChange={(event) => setIsSymbol(event.currentTarget.checked)}
+              />
+              <Checkbox
+                radius = 'xl'
+                label = 'Numbers'
+                onChange={(event) => setIsNumber(event.currentTarget.checked)}
               />
               <Button
                 mt="sm"
-                onClick={(e) => {
-                  w1t1(
-                    Number(
-                      (document.getElementById('a') as HTMLInputElement).value
-                    )
-                  );
-                  e.preventDefault();
-                }}>
-                FizzBuzzzzzz
+              >
+                Generate Password
               </Button>
             </form>
             <p id="w1t1" className="mt-3">
-              {w1t1Result}
+              {}
             </p>
           </Card>
         </Grid.Col>
