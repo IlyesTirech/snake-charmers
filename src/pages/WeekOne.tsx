@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Grid, Card, TextInput, Button, Checkbox, Slider } from '@mantine/core';
+import { Container, Grid, Card, Button, Checkbox, Slider } from '@mantine/core';
 
 const WeekOne: React.FC = () => {
 
