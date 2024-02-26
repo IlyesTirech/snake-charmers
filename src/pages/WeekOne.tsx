@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Grid, Card, Button, Checkbox, Slider } from '@mantine/core';
+import { Container, Grid, Card, Button, Checkbox, Slider, Text } from '@mantine/core';
 
 const WeekOne: React.FC = () => {
 
@@ -75,35 +75,44 @@ const WeekOne: React.FC = () => {
       <Grid>
         <Grid.Col span={12}>
           <Card shadow="sm" padding="lg" radius="md" withBorder>
+            <h2>Pick a length and check at least one option to generate a password</h2>
             <form>
+              <div className='mb-10'>
+              <Text size="sm">Length of password</Text>
           <Slider
-      color="blue"
-      min={5}
-      max={20}
-      marks={[
-        { value: 5, label: '5' },
-        { value: 10, label: '10' },
-        { value: 15, label: '15' },
-        { value: 20, label: '20' },
-      ]}
-      value={passwordLength} onChange={setPasswordLength}
-    />
-              <Checkbox 
+          style={{marginBottom: '30px'}}
+              color="blue"
+              min={5}
+              max={20}
+              marks={[
+                { value: 5, label: '5' },
+                { value: 10, label: '10' },
+                { value: 15, label: '15' },
+                { value: 20, label: '20' },
+              ]}
+              value={passwordLength} onChange={setPasswordLength}
+            />
+            </div>
+              <Checkbox
+               style={{marginBottom: '5px'}} 
                 radius = 'xl'
                 label = 'Uppercase letters'
                 onChange={(event) => setIsUppercase(event.currentTarget.checked)}
               />
               <Checkbox
+              style={{marginBottom: '5px'}} 
                 radius = 'xl'
                 label = 'Lowercase letters'
                 onChange={(event) => setIsLowercase(event.currentTarget.checked)}
               />
               <Checkbox
+              style={{marginBottom: '5px'}} 
                 radius = 'xl'
                 label = 'Symbols'
                 onChange={(event) => setIsSymbol(event.currentTarget.checked)}
               />
               <Checkbox
+              style={{marginBottom: '5px'}} 
                 radius = 'xl'
                 label = 'Numbers'
                 onChange={(event) => setIsNumber(event.currentTarget.checked)}
@@ -115,8 +124,8 @@ const WeekOne: React.FC = () => {
                 Generate Password
               </Button>
             </form>
-            <p id="w1t1" className="mt-3">
-              {!isError ? password : errorMessage}
+            <p style={{textAlign: 'center'}}>
+               <strong style={{fontSize: '20px'}}>{!isError ? password : errorMessage}</strong>
             </p>
           </Card>
         </Grid.Col>
